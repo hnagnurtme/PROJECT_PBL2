@@ -1,0 +1,10 @@
+debug/MAIN_APPLICATION.o
+debug/LoginWindow.o
+debug/RegisterWindow.o
+debug/HomePage.o
+debug/ForgotPasswordWindow.o
+debug/HomepageController.o
+debug/moc_LoginWindow.o
+debug/moc_RegisterWindow.o
+debug/moc_HomePage.o
+debug/moc_ForgotPasswordWindow.o

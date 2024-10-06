@@ -1,0 +1,10 @@
+release/MAIN_APPLICATION.o
+release/LoginWindow.o
+release/RegisterWindow.o
+release/HomePage.o
+release/ForgotPasswordWindow.o
+release/HomepageController.o
+release/moc_LoginWindow.o
+release/moc_RegisterWindow.o
+release/moc_HomePage.o
+release/moc_ForgotPasswordWindow.o
