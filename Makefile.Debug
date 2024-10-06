@@ -726,6 +726,13 @@ debug/moc_HomePage.cpp: GUI/Header/HomePage.h \
 		C:/QT/6.7.3/mingw_64/include/QtGui/qinputmethod.h \
 		C:/QT/6.7.3/mingw_64/include/QtCore/qlocale.h \
 		C:/QT/6.7.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		C:/QT/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/QT/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/QT/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/QT/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/QT/6.7.3/mingw_64/include/QtGui/QPixmap \
+		C:/QT/6.7.3/mingw_64/include/QtGui/QResizeEvent \
 		debug/moc_predefs.h \
 		C:/QT/6.7.3/mingw_64/bin/moc.exe
 	C:\QT\6.7.3\mingw_64\bin\moc.exe $(DEFINES) --include D:/PBL2/debug/moc_predefs.h -IC:/QT/6.7.3/mingw_64/mkspecs/win32-g++ -ID:/PBL2 -IC:/QT/6.7.3/mingw_64/include -IC:/QT/6.7.3/mingw_64/include/QtWidgets -IC:/QT/6.7.3/mingw_64/include/QtGui -IC:/QT/6.7.3/mingw_64/include/QtCore -IC:/mingw64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/mingw64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/mingw64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/mingw64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/mingw64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/mingw64/x86_64-w64-mingw32/include GUI\Header\HomePage.h -o debug\moc_HomePage.cpp
@@ -1361,6 +1368,11 @@ debug/LoginWindow.o: GUI/Source/LoginWindow.cpp GUI/Header/RegisterWindow.h \
 		Controller/Header/HomepageController.h \
 		GUI/Header/LoginWindow.h \
 		GUI/Header/HomePage.h \
+		C:/QT/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/QT/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/QT/6.7.3/mingw_64/include/QtGui/QPixmap \
+		C:/QT/6.7.3/mingw_64/include/QtGui/QResizeEvent \
 		GUI/Header/ForgotPasswordWindow.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QMessageBox \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qmessagebox.h \
@@ -1373,10 +1385,7 @@ debug/LoginWindow.o: GUI/Source/LoginWindow.cpp GUI/Header/RegisterWindow.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QGroupBox \
-		C:/QT/6.7.3/mingw_64/include/QtWidgets/qgroupbox.h \
-		C:/QT/6.7.3/mingw_64/include/QtWidgets/QLabel \
-		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
-		C:/QT/6.7.3/mingw_64/include/QtGui/qpicture.h
+		C:/QT/6.7.3/mingw_64/include/QtWidgets/qgroupbox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\LoginWindow.o GUI\Source\LoginWindow.cpp
 
 debug/RegisterWindow.o: GUI/Source/RegisterWindow.cpp GUI/Header/RegisterWindow.h \
@@ -1784,16 +1793,18 @@ debug/HomePage.o: GUI/Source/HomePage.cpp GUI/Header/HomePage.h \
 		C:/QT/6.7.3/mingw_64/include/QtGui/qinputmethod.h \
 		C:/QT/6.7.3/mingw_64/include/QtCore/qlocale.h \
 		C:/QT/6.7.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		C:/QT/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
-		C:/QT/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
-		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		C:/QT/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QLabel \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qframe.h \
 		C:/QT/6.7.3/mingw_64/include/QtGui/qpicture.h \
-		C:/QT/6.7.3/mingw_64/include/QtGui/qtextdocument.h
+		C:/QT/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/QT/6.7.3/mingw_64/include/QtGui/QPixmap \
+		C:/QT/6.7.3/mingw_64/include/QtGui/QResizeEvent \
+		C:/QT/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
+		C:/QT/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/QT/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\HomePage.o GUI\Source\HomePage.cpp
 
 debug/ForgotPasswordWindow.o: GUI/Source/ForgotPasswordWindow.cpp GUI/Header/ForgotPasswordWindow.h \
