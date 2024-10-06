@@ -49,7 +49,7 @@ LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent) {
 
     imageLayout->addLayout(centerLayout);
 
-    QLabel *title = new QLabel("Helooo My Name Linh Khum");
+    QLabel *title = new QLabel("Welcome My Store");
     title->setStyleSheet("font-size: 36px; font-weight: bold; color: #112950 ;");
     title->setAlignment(Qt::AlignCenter);
     imageLayout->addWidget(title);
