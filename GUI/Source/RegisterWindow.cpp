@@ -9,7 +9,7 @@
 using namespace std;
 
 RegisterWindow::RegisterWindow(QWidget *parent) : QWidget(parent) {
-    setFixedSize(1000, 600);
+    setFixedSize(1100, 700);
     
     // Set up UI elements
     QLabel *nameLabel = new QLabel("Full Name:");
@@ -42,15 +42,34 @@ RegisterWindow::RegisterWindow(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *layout = new QVBoxLayout;
 
     // Add a group for a label/message
-    QGroupBox *messageGroup = new QGroupBox();
-    QVBoxLayout *messageLayout = new QVBoxLayout;
-    QLabel *messageLabel = new QLabel("Welcome to the Registration Form! Please fill in the details below.");
-    messageLabel->setAlignment(Qt::AlignCenter); // Center align the message
-    messageLayout->addWidget(messageLabel);
-    messageGroup->setLayout(messageLayout);
-    messageGroup->setStyleSheet("background-color: #BDDDFD; border: 1px solid #AAAAAA; border-radius: 5px; padding: 10px;");
+    QVBoxLayout *imageLayout = new QVBoxLayout;
+    QLabel *imageLabel = new QLabel();
+    
+    QPixmap pixmap("D:\\PBL2\\GUI\\Resouce\\Background1.png");
+    if (pixmap.isNull()) {
+        imageLabel->setText("Image not found");
+    } else {
+        imageLabel->setPixmap(pixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        imageLabel->setScaledContents(true);
+    }
 
-    layout->addWidget(messageGroup);
+    QHBoxLayout *centerLayout = new QHBoxLayout;
+    centerLayout->addStretch();
+    centerLayout->addWidget(imageLabel);
+    centerLayout->addStretch();
+
+    imageLayout->addLayout(centerLayout);
+
+    QLabel *title = new QLabel(" Welcome to my Store ");
+    title->setStyleSheet("font-size: 20px; font-weight: bold; color: #112950 ;");
+    title->setAlignment(Qt::AlignCenter);
+    imageLayout->addWidget(title);
+    
+    QGroupBox *imageGroup = new QGroupBox();
+    imageGroup->setLayout(imageLayout);
+    imageGroup->setStyleSheet("background-color: #BDDDFD;color : white; border: 1px solid #AAAAAA; border-radius: 5px; padding: 10px;");
+    imageGroup->setFixedSize(1100, 200);
+    layout->addWidget(imageGroup);
 
     // Group for user details
     QGroupBox *userInfoGroup = new QGroupBox("User Information");

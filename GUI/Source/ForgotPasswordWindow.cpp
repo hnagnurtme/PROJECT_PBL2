@@ -12,58 +12,96 @@ ForgotPassWordWindow::ForgotPassWordWindow(QWidget *parent)
     : QWidget(parent) {
     
     setWindowTitle("Forgot Password");
-    setFixedSize(700, 400);
+    setFixedSize(1100, 700);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
-
-    QGroupBox *groupBox = new QGroupBox("Password Recovery", this);
-    QVBoxLayout *layout = new QVBoxLayout(groupBox);
+    // Group for Email Input
+    QGroupBox *emailGroupBox = new QGroupBox("Email Recovery", this);
+    QVBoxLayout *emailLayout = new QVBoxLayout(emailGroupBox);
 
     QLabel *emailLabel = new QLabel("Enter your email:", this);
-    layout->addWidget(emailLabel);
+    emailLayout->addWidget(emailLabel);
 
     emailLineEdit = new QLineEdit(this);
     emailLineEdit->setPlaceholderText("Email");
-    layout->addWidget(emailLineEdit);
+    emailLayout->addWidget(emailLineEdit);
 
     sendButton = new QPushButton("Send Request", this);
-    layout->addWidget(sendButton);
+    emailLayout->addWidget(sendButton);
+    emailGroupBox->setLayout(emailLayout);
 
+    // Group for OTP Input
+    QGroupBox *otpGroupBox = new QGroupBox("OTP Verification", this);
+    QVBoxLayout *otpLayout = new QVBoxLayout(otpGroupBox);
 
     QLabel *otpLabel = new QLabel("Enter your OTP:", this);
-    layout->addWidget(otpLabel);
+    otpLayout->addWidget(otpLabel);
 
     otpLineEdit = new QLineEdit(this);
     otpLineEdit->setPlaceholderText("OTP");
     otpLineEdit->setVisible(false); 
-    layout->addWidget(otpLineEdit);
+    otpLayout->addWidget(otpLineEdit);
 
     confirmButton = new QPushButton("Confirm OTP", this);
     confirmButton->setVisible(false);
-    layout->addWidget(confirmButton);
+    otpLayout->addWidget(confirmButton);
+    otpGroupBox->setLayout(otpLayout);
 
+    // Back to Login Button
     backtologinButton = new QPushButton("Back to Login", this);
-    layout->addWidget(backtologinButton);
 
-    
+    // Connect Signals and Slots
     connect(sendButton, &QPushButton::clicked, this, &ForgotPassWordWindow::sendOTPRequest);
     connect(backtologinButton, &QPushButton::clicked, this, &ForgotPassWordWindow::backtoLogin);
     connect(confirmButton, &QPushButton::clicked, this, &ForgotPassWordWindow::confirmOTP);
 
+    // Image and Title Layout
+    QVBoxLayout *imageLayout = new QVBoxLayout;
+    QLabel *imageLabel = new QLabel();
+    
+    QPixmap pixmap("D:\\PBL2\\GUI\\Resouce\\Background1.png");
+    if (pixmap.isNull()) {
+        imageLabel->setText("Image not found");
+    } else {
+        imageLabel->setPixmap(pixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        imageLabel->setScaledContents(true);
+    }
+
+    QHBoxLayout *centerLayout = new QHBoxLayout;
+    centerLayout->addStretch();
+    centerLayout->addWidget(imageLabel);
+    centerLayout->addStretch();
+
+    imageLayout->addLayout(centerLayout);
+
+    QLabel *title = new QLabel("Recover your password ");
+    title->setStyleSheet("font-size: 30px; font-weight: bold; color: #112950 ;");
+    title->setAlignment(Qt::AlignCenter);
+    imageLayout->addWidget(title);
+    
+    QGroupBox *imageGroup = new QGroupBox();
+    imageGroup->setLayout(imageLayout);
+    imageGroup->setStyleSheet("background-color: #BDDDFD;color : white; border: 1px solid #AAAAAA; border-radius: 5px; padding: 10px;");
+
+    // Set styles
     setStyleSheet("background-color: white");
-    groupBox->setStyleSheet("background-color: #BDDDFD; border: 1px solid #AAAAAA; border-radius: 5px; padding: 10px;");
+    emailGroupBox->setStyleSheet("background-color: #BDDDFD; border: 1px solid #AAAAAA; border-radius: 5px; padding: 10px;");
+    otpGroupBox->setStyleSheet("background-color: #BDDDFD; border: 1px solid #AAAAAA; border-radius: 5px; padding: 10px;");
     sendButton->setStyleSheet("background-color: #112950; color: white; border-radius: 5px; padding: 10px; font-size: 16px;");
     backtologinButton->setStyleSheet("background-color: #D4696A; color: white; border-radius: 5px; padding: 10px; font-size: 16px;");
     confirmButton->setStyleSheet("background-color: #112950; color: white; border-radius: 5px; padding: 10px; font-size: 16px;");
 
-    // Thiết lập layout cho groupBox
-    layout->setContentsMargins(30, 10, 30, 10);
-    groupBox->setLayout(layout);
-    mainLayout->addWidget(groupBox); // Thêm groupBox vào layout chính
+    // Add Groups to Main Layout
+    mainLayout->addWidget(imageGroup);
+    mainLayout->addWidget(emailGroupBox);
+    mainLayout->addWidget(otpGroupBox);
+    mainLayout->addWidget(backtologinButton);
     
-    setLayout(mainLayout); // Thiết lập layout cho cửa sổ
+
+    setLayout(mainLayout); // Set main layout for the window
 }
+
 
 void ForgotPassWordWindow::sendOTPRequest() {
     QString email = emailLineEdit->text().trimmed();

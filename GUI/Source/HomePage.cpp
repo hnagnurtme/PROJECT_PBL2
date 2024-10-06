@@ -5,7 +5,7 @@
 #include <QResizeEvent>
 
 HomePage::HomePage(QWidget *parent) : QWidget(parent) {
-    setFixedSize(1000, 600);  // Đặt kích thước cửa sổ cố định
+    setFixedSize(1100, 700);  // Đặt kích thước cửa sổ cố định
 
     // Tạo layout
     QVBoxLayout *layout = new QVBoxLayout(this);

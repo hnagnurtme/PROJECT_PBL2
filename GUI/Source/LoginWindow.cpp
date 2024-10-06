@@ -12,6 +12,7 @@
 #include <QMessageBox>
 
 LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent) {
+    setFixedSize(1100, 700);
     QLabel *emailLabel = new QLabel("Email Address:");
     emailEdit = new QLineEdit();
     emailEdit->setPlaceholderText("Enter your email...");
@@ -31,16 +32,18 @@ LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent) {
 
     QPushButton *forgotPasswordButton = new QPushButton("Forgot Password?");
     connect(forgotPasswordButton, &QPushButton::clicked, this, &LoginWindow::onForgotPasswordButtonClicked);
-
+    
     QVBoxLayout *imageLayout = new QVBoxLayout;
     QLabel *imageLabel = new QLabel();
     
-    QPixmap pixmap("D:\\PBL2\\GUI\\Resouce\\IMG_180.JPG");
+    QPixmap pixmap("D:\\PBL2\\GUI\\Resouce\\Background1.png");
     if (pixmap.isNull()) {
         imageLabel->setText("Image not found");
     } else {
-        imageLabel->setPixmap(pixmap.scaled(200, 200, Qt::KeepAspectRatio));
+        imageLabel->setPixmap(pixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        imageLabel->setScaledContents(true);  // Đảm bảo hình ảnh tự động co giãn
     }
+
 
     QHBoxLayout *centerLayout = new QHBoxLayout;
     centerLayout->addStretch();
@@ -49,8 +52,8 @@ LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent) {
 
     imageLayout->addLayout(centerLayout);
 
-    QLabel *title = new QLabel("Welcome My Store");
-    title->setStyleSheet("font-size: 36px; font-weight: bold; color: #112950 ;");
+    QLabel *title = new QLabel("Welcome My Book Store");
+    title->setStyleSheet("font-size: 30px; font-weight: bold; color: #112950 ;");
     title->setAlignment(Qt::AlignCenter);
     imageLayout->addWidget(title);
     
