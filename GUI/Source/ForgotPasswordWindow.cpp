@@ -1,5 +1,6 @@
 #include "GUI/Header/ForgotPasswordWindow.h"
 #include "Controller/Header/HomepageController.h"
+#include "GUI/Header/ChangePasswordWindow.h"
 #include <QVBoxLayout>
 #include <QGroupBox>
 #include <QLabel>
@@ -131,12 +132,17 @@ void ForgotPassWordWindow::confirmOTP() {
     HomepageController author;
     if (author.AuthentiacationRequest(otpEntered.toStdString())) {
         // Nếu OTP hợp lệ
-        QMessageBox::information(this, "Success", "OTP is valid. You can now reset your password.");
+        string otpSend = otpEntered.toStdString();
+        QMessageBox::information(this, "Success", "OTP is valid. You can now reset your password");
+        
+        ChangePasswordWindow *changePasswordWindow = new ChangePasswordWindow(this, otpSend);
+        changePasswordWindow->setWindowFlag(Qt::Window);
+        changePasswordWindow->resize(1000, 600);
+        changePasswordWindow->show();
 
-        // Logic để chuyển đến trang thay đổi mật khẩu
-        // ChangePasswordWindow *changePasswordWindow = new ChangePasswordWindow(this);
-        // changePasswordWindow->show();
-        // this->close(); // Đóng cửa sổ hiện tại nếu cần
+        
+    
+        // Kết nối tín hiệu destroyed
     } else {
         // Nếu OTP không hợp lệ
         QMessageBox::warning(this, "Invalid OTP", "The OTP you entered is invalid. Please try again.");

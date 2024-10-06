@@ -9,13 +9,13 @@ SOURCES += MAIN_APPLICATION.cpp \
            GUI/Source/RegisterWindow.cpp \
            GUI/Source/HomePage.cpp \
            GUI/Source/ForgotPasswordWindow.cpp \
-           Controller/Source/HomepageController.cpp 
-
+           Controller/Source/HomepageController.cpp \
+           GUI\Source\ChangePasswordWindow.cpp
 HEADERS += GUI/Header/LoginWindow.h \
            GUI/Header/RegisterWindow.h \
            GUI/Header/HomePage.h \
            GUI/Header/ForgotPasswordWindow.h \
-           Controller/Header/HomepageController.h 
-
+           Controller/Header/HomepageController.h \
+           GUI\Header\ChangePasswordWindow.h
 # Thêm thư viện cần thiết
 QT += widgets

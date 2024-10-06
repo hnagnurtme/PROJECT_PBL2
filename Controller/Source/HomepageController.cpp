@@ -49,16 +49,13 @@ void HomepageController::saveAccount(const string &email, const string &password
 
 // Hàm tạo và lưu OTP
 bool HomepageController::generateOTP(const string& email, const vector<pair<string, string>>& accounts) {
-    string otp;
-    chrono::steady_clock::time_point creationTime;
-
     for (const auto& account : accounts) {
         if (account.first == email) {
             random_device rd;
             mt19937 gen(rd());
             uniform_int_distribution<> distr(100000, 999999);
-            otp = to_string(distr(gen)); // Tạo OTP
-            creationTime = chrono::steady_clock::now(); // Lấy thời điểm tạo OTP
+            string otp = to_string(distr(gen)); // Tạo OTP
+            auto creationTime = chrono::steady_clock::now(); // Lấy thời điểm tạo OTP
 
             // Lưu OTP vào OTPRequest.txt
             ofstream file("Data/OTPRequest.txt", ios::app);
@@ -93,6 +90,8 @@ bool HomepageController::SendRequestRecover(const string &email) {
             accounts.push_back(make_pair(emailInFile, passwordInFile));
         }
     }
+
+    file.close(); // Đóng file sau khi đọc xong
 
     // Tạo OTP sau khi xác minh email có tồn tại
     return generateOTP(email, accounts);
@@ -133,4 +132,61 @@ bool HomepageController::AuthentiacationRequest(const string &otp) {
         cout << "OTP không đúng!" << endl;
         return false; // OTP không khớp
     }
+}
+
+bool HomepageController::RecoverPassword(const string &otp, const string &newPassword) {
+    ifstream otpFile("Data/OTPRequest.txt");
+    string line;
+    string email; // Biến để lưu email khi tìm thấy OTP
+    bool otpFound = false; // Biến kiểm tra OTP có tồn tại hay không
+
+    // Đọc nội dung tệp OTPRequest.txt
+    while (getline(otpFile, line)) {
+        // Tìm kiếm dòng có chứa OTP
+        if (line.find("OTP: " + otp) != string::npos) {
+            // Lấy email từ dòng trước đó
+            getline(otpFile, line); // Dòng tiếp theo chứa Email
+            istringstream iss(line);
+            getline(iss, email, ':'); // Lấy Email
+            email.erase(0, email.find_first_not_of(" \t")); // Xóa khoảng trắng đầu dòng
+            otpFound = true;
+            break; // Thoát vòng lặp nếu đã tìm thấy OTP
+        }
+    }
+
+    otpFile.close(); // Đóng tệp OTPRequest.txt
+
+    if (!otpFound) {
+        return false; // Trả về false nếu không tìm thấy OTP
+    }
+
+    // Cập nhật mật khẩu trong file Account.txt
+    ifstream userFile("Data/Account.txt");
+    string updatedContent;
+    bool userFound = false;
+
+    // Đọc nội dung tệp Account.txt và cập nhật mật khẩu
+    while (getline(userFile, line)) {
+        istringstream iss(line);
+        string storedEmail, storedPassword;
+        getline(iss, storedEmail, ','); // Đọc email
+        getline(iss, storedPassword); // Đọc mật khẩu
+
+        if (storedEmail == email) {
+            storedPassword = newPassword; // Cập nhật mật khẩu
+            userFound = true;
+        }
+
+        // Lưu lại nội dung đã chỉnh sửa
+        updatedContent += storedEmail + "," + storedPassword + "\n";
+    }
+
+    userFile.close(); // Đóng tệp Account.txt
+
+    // Ghi lại nội dung đã cập nhật vào tệp
+    ofstream outFile("Data/Account.txt");
+    outFile << updatedContent;
+    outFile.close();
+
+    return userFound; // Trả về true nếu đã cập nhật mật khẩu thành công
 }

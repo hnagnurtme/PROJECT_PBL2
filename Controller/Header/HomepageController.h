@@ -13,7 +13,7 @@ public:
     bool SendRequestRecover(const string &email);
     bool generateOTP(const string& email, const vector<pair<string, string>>& accounts);
     bool AuthentiacationRequest(const string &otp);
-
+    bool RecoverPassword(const string &otp,const string &newpassword);
 };
 
 #endif // HOMEPAGECONTROLLER

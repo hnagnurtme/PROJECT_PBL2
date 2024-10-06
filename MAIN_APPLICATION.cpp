@@ -1,6 +1,6 @@
 #include <QApplication>
 #include "GUI/Header/LoginWindow.h" 
-
+#include "GUI/Header/ChangePasswordWindow.h"
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
     

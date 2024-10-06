@@ -4,7 +4,9 @@ release/RegisterWindow.o
 release/HomePage.o
 release/ForgotPasswordWindow.o
 release/HomepageController.o
+release/ChangePasswordWindow.o
 release/moc_LoginWindow.o
 release/moc_RegisterWindow.o
 release/moc_HomePage.o
 release/moc_ForgotPasswordWindow.o
+release/moc_ChangePasswordWindow.o
