@@ -1,7 +1,7 @@
 #include "UserService/Header/HomepageController.h"
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include "DataStructures/DataStructures.h"
 #include <string>
 #include <sstream>
 #include <random> 
@@ -49,7 +49,8 @@ void HomepageController::saveAccount(const string &email, const string &password
 
 // Hàm tạo và lưu OTP
 bool HomepageController::generateOTP(const string& email, const vector<pair<string, string>>& accounts) {
-    for (const auto& account : accounts) {
+    for (int i = 0; i < accounts.size(); ++i) {
+        const auto& account = accounts[i];
         if (account.first == email) {
             random_device rd;
             mt19937 gen(rd());
@@ -74,6 +75,7 @@ bool HomepageController::generateOTP(const string& email, const vector<pair<stri
     }
     return false; // Không tìm thấy email trong danh sách tài khoản
 }
+
 
 // Hàm gửi yêu cầu khôi phục mật khẩu
 bool HomepageController::SendRequestRecover(const string &email) {

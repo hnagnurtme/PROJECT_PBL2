@@ -1594,6 +1594,7 @@ release/LoginWindow.o: GUI/Source/LoginWindow.cpp GUI/Header/RegisterWindow.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qdialog.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		UserService/Header/HomepageController.h \
+		DataStructures/DataStructures.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
@@ -1805,6 +1806,7 @@ release/RegisterWindow.o: GUI/Source/RegisterWindow.cpp GUI/Header/RegisterWindo
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QPushButton \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
 		UserService/Header/HomepageController.h \
+		DataStructures/DataStructures.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QLabel \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
 		C:/QT/6.7.3/mingw_64/include/QtGui/qpicture.h \
@@ -2226,6 +2228,7 @@ release/ForgotPasswordWindow.o: GUI/Source/ForgotPasswordWindow.cpp GUI/Header/F
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qdialog.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		UserService/Header/HomepageController.h \
+		DataStructures/DataStructures.h \
 		GUI/Header/ChangePasswordWindow.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
@@ -2239,7 +2242,8 @@ release/ForgotPasswordWindow.o: GUI/Source/ForgotPasswordWindow.cpp GUI/Header/F
 		C:/QT/6.7.3/mingw_64/include/QtGui/qpicture.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\ForgotPasswordWindow.o GUI\Source\ForgotPasswordWindow.cpp
 
-release/HomepageController.o: UserService/Source/HomepageController.cpp UserService/Header/HomepageController.h
+release/HomepageController.o: UserService/Source/HomepageController.cpp UserService/Header/HomepageController.h \
+		DataStructures/DataStructures.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\HomepageController.o UserService\Source\HomepageController.cpp
 
 release/ChangePasswordWindow.o: GUI/Source/ChangePasswordWindow.cpp GUI/Header/ForgotPasswordWindow.h \
@@ -2446,6 +2450,7 @@ release/ChangePasswordWindow.o: GUI/Source/ChangePasswordWindow.cpp GUI/Header/F
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		GUI/Header/ChangePasswordWindow.h \
 		UserService/Header/HomepageController.h \
+		DataStructures/DataStructures.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlayout.h \

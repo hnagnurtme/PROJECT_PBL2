@@ -1594,6 +1594,7 @@ debug/LoginWindow.o: GUI/Source/LoginWindow.cpp GUI/Header/RegisterWindow.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qdialog.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		UserService/Header/HomepageController.h \
+		DataStructures/DataStructures.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
@@ -1805,6 +1806,7 @@ debug/RegisterWindow.o: GUI/Source/RegisterWindow.cpp GUI/Header/RegisterWindow.
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QPushButton \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
 		UserService/Header/HomepageController.h \
+		DataStructures/DataStructures.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QLabel \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
 		C:/QT/6.7.3/mingw_64/include/QtGui/qpicture.h \
@@ -2226,6 +2228,7 @@ debug/ForgotPasswordWindow.o: GUI/Source/ForgotPasswordWindow.cpp GUI/Header/For
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qdialog.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		UserService/Header/HomepageController.h \
+		DataStructures/DataStructures.h \
 		GUI/Header/ChangePasswordWindow.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
@@ -2239,7 +2242,8 @@ debug/ForgotPasswordWindow.o: GUI/Source/ForgotPasswordWindow.cpp GUI/Header/For
 		C:/QT/6.7.3/mingw_64/include/QtGui/qpicture.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ForgotPasswordWindow.o GUI\Source\ForgotPasswordWindow.cpp
 
-debug/HomepageController.o: UserService/Source/HomepageController.cpp UserService/Header/HomepageController.h
+debug/HomepageController.o: UserService/Source/HomepageController.cpp UserService/Header/HomepageController.h \
+		DataStructures/DataStructures.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\HomepageController.o UserService\Source\HomepageController.cpp
 
 debug/ChangePasswordWindow.o: GUI/Source/ChangePasswordWindow.cpp GUI/Header/ForgotPasswordWindow.h \
@@ -2446,6 +2450,7 @@ debug/ChangePasswordWindow.o: GUI/Source/ChangePasswordWindow.cpp GUI/Header/For
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		GUI/Header/ChangePasswordWindow.h \
 		UserService/Header/HomepageController.h \
+		DataStructures/DataStructures.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
