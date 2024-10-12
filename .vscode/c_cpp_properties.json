@@ -4,10 +4,10 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/QT/6.7.3/mingw_64/include", // Thư mục include của Qt
-                "C:/QT/6.7.3/mingw_64/include/QtCore", // Thư mục chứa QtCore
-                "C:/QT/6.7.3/mingw_64/include/QtGui",  // Thư mục chứa QtGui
-                "C:/QT/6.7.3/mingw_64/include/QtWidgets"
+                "C:/QT/6.7.3/mingw_64/include/**",
+                "C:/QT/6.7.3/mingw_64/include/QtCore/**",
+                "C:/QT/6.7.3/mingw_64/include/QtGui/**",
+                "C:/QT/6.7.3/mingw_64/include/QtWidgets/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -15,10 +15,10 @@
                 "_UNICODE"
             ],
             "windowsSdkVersion": "10.0.22621.0",
-            "compilerPath": "cl.exe",
+            "compilerPath": "C:/mingw64/bin/g++.exe",
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "intelliSenseMode": "windows-msvc-x64"
+            "intelliSenseMode": "gcc-x64"
         }
     ],
     "version": 4
