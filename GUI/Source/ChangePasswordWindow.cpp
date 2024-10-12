@@ -1,6 +1,6 @@
 #include "GUI/Header/ForgotPasswordWindow.h"
 #include "GUI/Header/ChangePasswordWindow.h"
-#include "Controller/Header/HomepageController.h"
+#include "UserService/Header/HomepageController.h"
 #include <QVBoxLayout>
 #include <QGroupBox>
 #include <QLabel>

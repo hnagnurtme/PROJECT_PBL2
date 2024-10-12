@@ -5,7 +5,7 @@
 #include <QLineEdit>
 #include <QCheckBox>
 #include <QPushButton>
-#include "Controller/Header/HomepageController.h"
+
 class RegisterWindow : public QWidget {
     Q_OBJECT
 

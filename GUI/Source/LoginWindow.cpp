@@ -2,7 +2,7 @@
 #include "GUI/Header/LoginWindow.h"
 #include "GUI/Header/HomePage.h"
 #include "GUI/Header/ForgotPasswordWindow.h"
-#include "Controller/Header/HomepageController.h"
+#include "UserService/Header/HomepageController.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QGroupBox>

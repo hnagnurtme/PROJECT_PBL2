@@ -1,4 +1,4 @@
-#include "Controller/Header/HomepageController.h"
+#include "UserService/Header/HomepageController.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -134,6 +134,7 @@ bool HomepageController::AuthentiacationRequest(const string &otp) {
     }
 }
 
+// Hàm lấy lại MK
 bool HomepageController::RecoverPassword(const string &otp, const string &newPassword) {
     ifstream otpFile("Data/OTPRequest.txt");
     string line;
