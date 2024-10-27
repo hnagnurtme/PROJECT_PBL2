@@ -620,7 +620,10 @@ release/DataController.o: Controller/DataController.cpp Controller/DataControlle
 		Model/Product.h \
 		Model/User.h \
 		Datastructures/Vector.h \
-		Datastructures/Pair.h
+		Datastructures/Pair.h \
+		Model/Cart.h \
+		Model/Manager.h \
+		Model/Order.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\DataController.o Controller\DataController.cpp
 
 release/Product.o: Model/Product.cpp Model/Product.h \
@@ -864,6 +867,9 @@ release/GiaoDienKhachHang.o: View/GiaoDienKhachHang.cpp View/GiaoDienKhachHang.h
 		Datastructures/Vector.h \
 		Datastructures/Pair.h \
 		Controller/DataController.h \
+		Model/Cart.h \
+		Model/Manager.h \
+		Model/Order.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlayout.h \

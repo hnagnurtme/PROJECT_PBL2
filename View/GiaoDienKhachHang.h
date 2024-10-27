@@ -32,6 +32,7 @@ signals:
     void productDeleted(const QString &productName);
 
 private:
+    QVector<QStringList> gioHang;
     QPushButton *showOverviewButton;
     QPushButton *showProductsButton;
     QPushButton *checkoutButton;
@@ -43,7 +44,7 @@ private:
     QTableWidget *productTable;
     QTableWidget *cartTable;
     QTableWidget *ordersTable;
-    
+    QLabel *TongTien;
     void addProducts(int row, bool fromCart);
     void deleteProducts(int row, bool fromCart);
     void addProductsData();

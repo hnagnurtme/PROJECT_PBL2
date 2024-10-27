@@ -10,10 +10,13 @@ using namespace std;
 class Cart {
 private:
     Vector<Pair<Product, int>> items;
+    string customerID;  
 public:
+    Cart(string id) : customerID(id) {}  
     void addItem(const Product& product, int quantity);
-    void removeItem(int productId);
+    void removeItem(string productId);
     void clearCart();
     void displayCartItems() const;
     Vector<Pair<Product, int>> getItems() const;
+    string getCustomerID() const ;
 };

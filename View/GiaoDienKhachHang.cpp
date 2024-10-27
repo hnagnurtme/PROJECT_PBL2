@@ -126,7 +126,6 @@ void CustomerInterface::addProductsData() {
     size_t productCount = products.getSize(); 
     int row = 0;
 
-    // Kiểm tra kích thước của products
     qDebug() << "Number of products loaded:" << productCount;
 
     for (size_t i = 0; i < productCount && row < 100; ++i) {
@@ -179,8 +178,111 @@ void CustomerInterface::showProducts() {
     stackWidget->setCurrentIndex(0);
 }
 
+
+
+void CustomerInterface::addProducts(int row, bool fromCart) {
+    QString tenSanPham = fromCart ? gioHang[row][0] : productTable->item(row, 3)->text();
+    QString giaSanPham = fromCart ? gioHang[row][1] : productTable->item(row, 4)->text();
+
+    bool daCoTrongGioHang = false;
+
+    for (auto &sanPham : gioHang) {
+        if (sanPham[2] == productTable->item(row, 2)->text()) {
+            int soLuong = sanPham[3].toInt();
+            soLuong++;
+            sanPham[3] = QString::number(soLuong);
+            daCoTrongGioHang = true;
+            break;
+        }
+    }
+
+    if (!daCoTrongGioHang) {
+        gioHang.append({productTable->item(row, 3)->text(), productTable->item(row, 2)->text(), giaSanPham, "1"});
+    }
+
+    if (stackWidget->currentIndex() == 1) {
+    
+    }
+}
+
+
+void CustomerInterface::deleteProducts(int row, bool fromCart) {
+    if (gioHang.isEmpty()) {
+        QMessageBox::warning(this, "Cảnh báo", "Giỏ hàng trống, không có sản phẩm nào để xóa.");
+        return;
+    }
+
+    QString productId = fromCart ? gioHang[row][1] : productTable->item(row, 2)->text();
+    bool found = false;
+
+    for (int i = 0; i < gioHang.size(); ++i) {
+        if (gioHang[i][1] == productId) {
+            int soLuong = gioHang[i][3].toInt();
+            if (soLuong > 1) {
+                soLuong--;
+                gioHang[i][3] = QString::number(soLuong);
+            } else {
+                gioHang.removeAt(i);
+            }
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        QMessageBox::warning(this, "Cảnh báo", "Sản phẩm không có trong giỏ hàng.");
+    }
+
+    if (stackWidget->currentIndex() == 1) {
+        showCart();
+    }
+}
+
+
 void CustomerInterface::showCart() {
-    {}
+    cartTable->clear();
+    cartTable->setColumnCount(6);
+    cartTable->setHorizontalHeaderLabels({"No.", "Tên sản phẩm", "Mã sản phẩm", "Giá", "Số lượng", "Hành động"});
+
+    cartTable->setRowCount(gioHang.size());
+    for (int i = 0; i < gioHang.size(); ++i) {
+        cartTable->setItem(i, 0, new QTableWidgetItem(QString::number(i + 1)));
+        cartTable->setItem(i, 1, new QTableWidgetItem(gioHang[i][0]));
+        cartTable->setItem(i, 2, new QTableWidgetItem(gioHang[i][1]));
+        cartTable->setItem(i, 3, new QTableWidgetItem(gioHang[i][2]));
+        cartTable->setItem(i, 4, new QTableWidgetItem(gioHang[i][3]));
+
+        QPushButton *btnAdd = new QPushButton("+");
+        btnAdd->setObjectName("confirmButton");
+        connect(btnAdd, &QPushButton::clicked, [this, i]() { addProducts(i, true); });
+
+        QPushButton *btnDelete = new QPushButton("-");
+        btnDelete->setObjectName("cancelButton");
+        connect(btnDelete, &QPushButton::clicked, [this, i]() { deleteProducts(i, true); });
+
+        QWidget *actionWidget = new QWidget();
+        QHBoxLayout *layout = new QHBoxLayout(actionWidget);
+        layout->addWidget(btnAdd);
+        layout->addWidget(btnDelete);
+        layout->setAlignment(Qt::AlignCenter);
+        layout->setContentsMargins(0, 0, 0, 0);
+        actionWidget->setLayout(layout);
+
+        cartTable->setCellWidget(i, 5, actionWidget);
+    }
+    int tongTien = 0;
+    for (const auto &sanPham : gioHang) {
+        int gia = sanPham[2].toInt();
+        int soLuong = sanPham[3].toInt();
+        tongTien += gia * soLuong;
+    }
+
+    TongTien->setText("Tổng tiền: " + QString::number(tongTien) + " VND");
+    for (int row = 0; row < cartTable->rowCount(); ++row) {
+        cartTable->setRowHeight(row, 50);
+    }
+
+    stackWidget->setCurrentIndex(1);
 }
 
 void CustomerInterface::showOverview() {
@@ -191,12 +293,6 @@ void CustomerInterface::filterProducts() {
     {}
 }
 
-void CustomerInterface::addProducts(int row, bool fromCart) {
-    {}
-}
-
-void CustomerInterface::deleteProducts(int row, bool fromCart) {
-}
 
 void CustomerInterface::showAccount() {
 }
