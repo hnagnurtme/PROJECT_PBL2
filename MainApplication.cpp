@@ -1,9 +1,9 @@
 #include <QApplication>
-#include "GiaoDienKhachHang.h"
+#include "View/GiaoDienKhachHang.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
-    GiaoDienKhachHang window;
+    CustomerInterface window;
     window.show();
     return app.exec();
 }

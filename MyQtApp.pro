@@ -5,8 +5,14 @@ CONFIG += c++11
 
 # Thêm các thư mục con vào project
 SOURCES += MainApplication.cpp \
-           GiaoDienKhachHang.cpp  
-HEADERS +=  GiaoDienKhachHang.h
+           Controller/DataController.cpp \
+           Model/Product.cpp \
+           View/GiaoDienKhachHang.cpp
+HEADERS +=  Controller/DataController.h \
+            Datastructures/Pair.h \
+            Datastructures/Vector.h \
+            Model/Product.h \
+            View/GiaoDienKhachHang.h
            
 # Thêm thư viện cần thiết
 QT += widgets
