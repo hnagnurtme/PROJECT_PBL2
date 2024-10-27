@@ -89,37 +89,37 @@ Product DataController::parseProduct(const string& line) {
     return Product(id, name, category, price, stock, description, sizes, colors, brand);
 }
 
-Cart DataController::loadCartData(const string& filename) {
-    Cart cart("DefaultCustomerID");
-    ifstream file(filename);
-    string line;
+// Cart DataController::loadCartData(const string& filename) {
+//     Cart cart("DefaultCustomerID");
+//     ifstream file(filename);
+//     string line;
 
-    if (file.is_open()) {
-        getline(file, line);
-        while (getline(file, line)) {
-            istringstream ss(line);
-            string customerId, productId;
+//     if (file.is_open()) {
+//         getline(file, line);
+//         while (getline(file, line)) {
+//             istringstream ss(line);
+//             string customerId, productId;
 
-            getline(ss, customerId, ',');
-            getline(ss, productId, ',');
-            Product product = findProductById(productId);
-            if (product.getProductId() != "") { 
-                cart.addItem(product, 1); 
-            }
-        }
-        file.close();
-    } else {
-        cout << "Không thể mở file giỏ hàng." << endl;
-    }
-    return cart;
-}
-Product DataController::findProductById(const string& productId) {
-    Vector<Product> products = loadProductData(); 
-    for (size_t i = 0; i < products.getSize(); ++i) { 
-        if (products[i].getProductId() == productId) {
-            return products[i]; 
-        }
-    }
+//             getline(ss, customerId, ',');
+//             getline(ss, productId, ',');
+//             Product product = findProductById(productId);
+//             if (product.getProductId() != "") { 
+//                 cart.addItem(product, 1); 
+//             }
+//         }
+//         file.close();
+//     } else {
+//         cout << "Không thể mở file giỏ hàng." << endl;
+//     }
+//     return cart;
+// }
+// Product DataController::findProductById(const string& productId) {
+//     Vector<Product> products = loadProductData(); 
+//     for (size_t i = 0; i < products.getSize(); ++i) { 
+//         if (products[i].getProductId() == productId) {
+//             return products[i]; 
+//         }
+//     }
 
-    return Product("", "", "", 0.0, 0, "", Vector<Pair<int, int>>(), Vector<string>(), ""); 
-}
+//     return Product("", "", "", 0.0, 0, "", Vector<Pair<int, int>>(), Vector<string>(), ""); 
+// }

@@ -37,6 +37,7 @@ private:
     QPushButton *showProductsButton;
     QPushButton *checkoutButton;
     QPushButton *showCartButton;
+    QPushButton *showOrdersButton;
     QPushButton *showInvoicesButton;
     QPushButton *showAccountButton;
     QStackedWidget *stackWidget;
