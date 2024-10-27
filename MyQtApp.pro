@@ -4,18 +4,12 @@ TARGET = MyQtApp
 CONFIG += c++11
 
 # Thêm các thư mục con vào project
-SOURCES += MAIN_APPLICATION.cpp \
-           GUI/Source/LoginWindow.cpp \
-           GUI/Source/RegisterWindow.cpp \
-           GUI/Source/HomePage.cpp \
-           GUI/Source/ForgotPasswordWindow.cpp \
-           UserService/Source/HomepageController.cpp \
-           GUI\Source\ChangePasswordWindow.cpp
-HEADERS += GUI/Header/LoginWindow.h \
-           GUI/Header/RegisterWindow.h \
-           GUI/Header/HomePage.h \
-           GUI/Header/ForgotPasswordWindow.h \
-           UserService/Header/HomepageController.h \
-           GUI\Header\ChangePasswordWindow.h
+SOURCES += MainApplication.cpp \
+           GiaoDienKhachHang.cpp  
+HEADERS +=  GiaoDienKhachHang.h
+           
 # Thêm thư viện cần thiết
 QT += widgets
+
+# Khai báo tài nguyên
+RESOURCES += Resource/resources.qrc
