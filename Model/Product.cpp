@@ -2,10 +2,9 @@
 #include <iostream>
 
 Product::Product(string id, const string& name, const string& category, double price, int stock,
-                const string& description, const Vector<Pair<int, int>>& sizes,
-                const Vector<string>& colors, const string& brand)
+                const string& description, const Vector<string>& colors, const string& brand)
     : productId(id), name(name), category(category), price(price), stock(stock),
-    description(description), sizes(sizes), colors(colors), brand(brand) {}
+    description(description), colors(colors), brand(brand) {}
 
 string Product::getProductId() const {
     return productId;
@@ -29,10 +28,6 @@ int Product::getStock() const {
 
 string Product::getDescription() const {
     return description;
-}
-
-Vector<Pair<int, int>> Product::getSizes() const {
-    return sizes;
 }
 
 Vector<string> Product::getColors() const {
@@ -66,10 +61,6 @@ void Product::displayInfo() const {
     cout << "Price: $" << price << endl;
     cout << "Stock: " << stock << endl;
     cout << "Description: " << description << endl;
-    cout << "Sizes: ";
-    for (long i = 0; i < sizes.getSize(); ++i) {
-        cout << "(" << sizes[i].getFirst() << ", " << sizes[i].getSecond() << ") ";
-    }
     cout << endl;
     cout << "Colors: ";
     for (long i = 0; i < colors.getSize(); ++i) {

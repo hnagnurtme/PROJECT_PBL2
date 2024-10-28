@@ -26,6 +26,7 @@ private slots:
     void showOrders();
     void showAccount();
     void showInvoice();
+    void payment();
     void checkout();
 signals:
     void productAdded(const QString &productName);
@@ -41,11 +42,13 @@ private:
     QPushButton *showInvoicesButton;
     QPushButton *showAccountButton;
     QStackedWidget *stackWidget;
-
+    QTextEdit *invoiceDisplay ;
+    QPushButton *paymentButton;
+    QPushButton *placeOrdersButton;
     QTableWidget *productTable;
     QTableWidget *cartTable;
     QTableWidget *ordersTable;
-    QLabel *TongTien;
+    QLabel *totalPrice;
     void addProducts(int row, bool fromCart);
     void deleteProducts(int row, bool fromCart);
     void addProductsData();

@@ -48,6 +48,7 @@ constexpr auto qt_meta_stringdata_CLASSCustomerInterfaceENDCLASS = QtMocHelpers:
     "showOrders",
     "showAccount",
     "showInvoice",
+    "payment",
     "checkout"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
@@ -61,7 +62,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSCustomerInterfaceENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -69,24 +70,26 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSCustomerInterfaceENDCLASS[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   74,    2, 0x06,    1 /* Public */,
-       4,    1,   77,    2, 0x06,    3 /* Public */,
+       1,    1,   80,    2, 0x06,    1 /* Public */,
+       4,    1,   83,    2, 0x06,    3 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    0,   80,    2, 0x08,    5 /* Private */,
-       6,    0,   81,    2, 0x08,    6 /* Private */,
-       7,    0,   82,    2, 0x08,    7 /* Private */,
-       8,    0,   83,    2, 0x08,    8 /* Private */,
-       9,    0,   84,    2, 0x08,    9 /* Private */,
-      10,    0,   85,    2, 0x08,   10 /* Private */,
-      11,    0,   86,    2, 0x08,   11 /* Private */,
-      12,    0,   87,    2, 0x08,   12 /* Private */,
+       5,    0,   86,    2, 0x08,    5 /* Private */,
+       6,    0,   87,    2, 0x08,    6 /* Private */,
+       7,    0,   88,    2, 0x08,    7 /* Private */,
+       8,    0,   89,    2, 0x08,    8 /* Private */,
+       9,    0,   90,    2, 0x08,    9 /* Private */,
+      10,    0,   91,    2, 0x08,   10 /* Private */,
+      11,    0,   92,    2, 0x08,   11 /* Private */,
+      12,    0,   93,    2, 0x08,   12 /* Private */,
+      13,    0,   94,    2, 0x08,   13 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void, QMetaType::QString,    3,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -128,6 +131,8 @@ Q_CONSTINIT const QMetaObject CustomerInterface::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'showInvoice'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'payment'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'checkout'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
@@ -149,7 +154,8 @@ void CustomerInterface::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         case 6: _t->showOrders(); break;
         case 7: _t->showAccount(); break;
         case 8: _t->showInvoice(); break;
-        case 9: _t->checkout(); break;
+        case 9: _t->payment(); break;
+        case 10: _t->checkout(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -190,13 +196,13 @@ int CustomerInterface::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 10;
+        _id -= 11;
     }
     return _id;
 }

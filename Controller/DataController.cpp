@@ -41,37 +41,11 @@ Product DataController::parseProduct(const string& line) {
     getline(ss, priceStr, ';');
     getline(ss, stockStr, ';');
     getline(ss, description, ';');
-    getline(ss, sizesStr, ';');
     getline(ss, colorsStr, ';');
     getline(ss, brand, ';');
 
     double price = stod(priceStr);
     int stock = stoi(stockStr);
-
-    
-    Vector<Pair<int, int>> sizes;
-    istringstream sizesStream(sizesStr);
-    string sizePair;
-
-    
-    while (getline(sizesStream, sizePair, '}')) {
-        if (sizePair.empty()) continue;
-
-        
-        if (sizePair.front() == '{') {
-            sizePair.erase(sizePair.begin());
-        }
-
-        
-        istringstream sizeStream(sizePair);
-        int size, countOfSize;
-        char delimiter;
-
-        if (sizeStream >> size >> delimiter >> countOfSize) {
-            sizes.pushback(Pair<int, int>{size, countOfSize}); 
-        }
-    }
-
 
     Vector<string> colors;
     istringstream colorsStream(colorsStr);
@@ -86,7 +60,7 @@ Product DataController::parseProduct(const string& line) {
         }
     }
 
-    return Product(id, name, category, price, stock, description, sizes, colors, brand);
+    return Product(id, name, category, price, stock, description,colors, brand);
 }
 
 // Cart DataController::loadCartData(const string& filename) {

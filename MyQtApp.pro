@@ -7,11 +7,15 @@ CONFIG += c++11
 SOURCES += MainApplication.cpp \
            Controller/DataController.cpp \
            Model/Product.cpp \
+           Model/Cart.cpp \
+           Model/User.cpp \
            View/GiaoDienKhachHang.cpp
 HEADERS +=  Controller/DataController.h \
             Datastructures/Pair.h \
             Datastructures/Vector.h \
             Model/Product.h \
+            Model/Cart.h \
+            Model/User.h \
             View/GiaoDienKhachHang.h
            
 # Thêm thư viện cần thiết
