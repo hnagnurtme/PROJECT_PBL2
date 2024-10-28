@@ -44,7 +44,7 @@ CustomerInterface::CustomerInterface(QWidget *parent) : QWidget(parent) {
 
     connect(showOverviewButton, &QPushButton::clicked, this, &CustomerInterface::showOverview);
     connect(showProductsButton, &QPushButton::clicked, this, &CustomerInterface::showProducts);
-    connect(showCartButton, &QPushButton::clicked, this, &CustomerInterface::showOrders);
+    connect(showCartButton, &QPushButton::clicked, this, &CustomerInterface::showCart);
     connect(showOrdersButton, &QPushButton::clicked, this, &CustomerInterface::showOrders);
     connect(showAccountButton, &QPushButton::clicked, this, &CustomerInterface::showAccount);
     connect(checkoutButton, &QPushButton::clicked, this, &CustomerInterface::checkout);
@@ -197,16 +197,10 @@ void CustomerInterface::addProducts(int row, bool fromCart) {
     if (!daCoTrongGioHang) {
         gioHang.append({tenSanPham, productTable->item(row, 2)->text(), giaSanPham, "1"});
     }
-
-    showCart();
+    
 }
 
 void CustomerInterface::deleteProducts(int row, bool fromCart) {
-    if (gioHang.isEmpty()) {
-        QMessageBox::warning(this, "Cảnh báo", "Giỏ hàng trống, không có sản phẩm nào để xóa.");
-        return;
-    }
-
     QString productId = fromCart ? gioHang[row][1] : productTable->item(row, 2)->text();
     bool found = false;
 
@@ -223,12 +217,20 @@ void CustomerInterface::deleteProducts(int row, bool fromCart) {
             break;
         }
     }
-
-    if (!found) {
-        QMessageBox::warning(this, "Cảnh báo", "Không tìm thấy sản phẩm trong giỏ hàng.");
+    int tongTien = 0;
+    for (const auto &sanPham : gioHang) {
+        int gia = sanPham[2].toInt();
+        int soLuong = sanPham[3].toInt();
+        tongTien += gia * soLuong;
     }
 
-    showCart();
+    TongTien->setText("Tổng tiền: " + QString::number(tongTien) + " VND");
+    for (int row = 0; row < cartTable->rowCount(); ++row) {
+        cartTable->setRowHeight(row, 50);
+    }
+    if (stackWidget->currentIndex() == 1) {
+        showCart();
+    }
 }
 
 void CustomerInterface::showCart() {
@@ -243,10 +245,23 @@ void CustomerInterface::showCart() {
         cartTable->setItem(i, 3, new QTableWidgetItem(gioHang[i][3])); 
         cartTable->setItem(i, 4, new QTableWidgetItem(gioHang[i][2])); 
 
-        QPushButton *removeButton = new QPushButton("Remove");
-        connect(removeButton, &QPushButton::clicked, [this, i]() { deleteProducts(i, true); });
+        QPushButton *btnAdd = new QPushButton("+");
+        btnAdd->setObjectName("confirmButton");
+        connect(btnAdd, &QPushButton::clicked, [this, i]() { addProducts(i, true); });
 
-        cartTable->setCellWidget(i, 5, removeButton); 
+        QPushButton *btnDelete = new QPushButton("-");
+        btnDelete->setObjectName("cancelButton");
+        connect(btnDelete, &QPushButton::clicked, [this, i]() { deleteProducts(i, true); });
+
+        QWidget *actionWidget = new QWidget();
+        QHBoxLayout *layout = new QHBoxLayout(actionWidget);
+        layout->addWidget(btnAdd);
+        layout->addWidget(btnDelete);
+        layout->setAlignment(Qt::AlignCenter);
+        layout->setContentsMargins(0, 0, 0, 0);
+        actionWidget->setLayout(layout);
+
+        cartTable->setCellWidget(i, 5, actionWidget); 
     }
 
     stackWidget->setCurrentIndex(1);

@@ -1,4 +1,4 @@
-#include "Product.h"
+#include "Model/Product.h"
 #include <iostream>
 
 Product::Product(string id, const string& name, const string& category, double price, int stock,
