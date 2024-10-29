@@ -7,6 +7,7 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
+#include <filesystem>
 using namespace std;
 
 DataController::DataController(const string& filename) : productFileName(filename) {}
@@ -63,37 +64,76 @@ Product DataController::parseProduct(const string& line) {
     return Product(id, name, category, price, stock, description,colors, brand);
 }
 
-// Cart DataController::loadCartData(const string& filename) {
-//     Cart cart("DefaultCustomerID");
-//     ifstream file(filename);
-//     string line;
+void DataController::saveCartData(const Cart& cart) {
+    string folderPath = "Data/CartInformation";
+    
+    // Tạo thư mục nếu không tồn tại
+    if (!filesystem::exists(folderPath)) {
+        filesystem::create_directory(folderPath);
+    }
 
-//     if (file.is_open()) {
-//         getline(file, line);
-//         while (getline(file, line)) {
-//             istringstream ss(line);
-//             string customerId, productId;
+    // Đường dẫn tới file cart
+    string filePath = folderPath + "/" + cart.getCustomerID() + "_cart.csv";
+    
+    // Mở file để ghi đè (trunc sẽ là mặc định khi mở với ofstream)
+    ofstream file(filePath);
 
-//             getline(ss, customerId, ',');
-//             getline(ss, productId, ',');
-//             Product product = findProductById(productId);
-//             if (product.getProductId() != "") { 
-//                 cart.addItem(product, 1); 
-//             }
-//         }
-//         file.close();
-//     } else {
-//         cout << "Không thể mở file giỏ hàng." << endl;
-//     }
-//     return cart;
-// }
-// Product DataController::findProductById(const string& productId) {
-//     Vector<Product> products = loadProductData(); 
-//     for (size_t i = 0; i < products.getSize(); ++i) { 
-//         if (products[i].getProductId() == productId) {
-//             return products[i]; 
-//         }
-//     }
+    // Kiểm tra xem file có mở thành công không
+    if (!file.is_open()) {
+        cerr << "Không thể mở file để ghi: " << filePath << endl;
+        return;
+    }
 
-//     return Product("", "", "", 0.0, 0, "", Vector<Pair<int, int>>(), Vector<string>(), ""); 
-// }
+    // Ghi tiêu đề cột
+    file << "Product Name,Product ID,Price,Quantity\n";
+    
+    // Sử dụng lớp Vector để ghi dữ liệu
+    const Vector<Pair<Product, int>>& cartItems = cart.getItems();
+    for (long i = 0; i < cartItems.getSize(); ++i) {
+        const Product& product = cartItems[i].getFirst();
+        int quantity = cartItems[i].getSecond();
+        file << product.getName() << ","
+             << product.getProductId() << ","
+             << product.getPrice() << ","
+             << quantity << "\n";
+    }
+
+    // Đóng file
+    file.close();
+}
+
+Cart DataController::loadCartData(const string& customerID) {
+    Cart cart(customerID);
+    string filePath = "Data/CartInformation/" + customerID + "_cart.csv";
+    ifstream file(filePath);
+
+    if (!file.is_open()) {
+        cerr << "Không thể mở file để đọc: " << filePath << endl;
+        return cart; // Trả về giỏ hàng rỗng nếu không thể mở file
+    }
+
+    string line;
+    // Bỏ qua dòng tiêu đề
+    getline(file, line);
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string name, id;
+        double price;
+        int quantity;
+
+        // Đọc dữ liệu từ dòng
+        getline(ss, name, ',');
+        getline(ss, id, ',');
+        ss >> price;
+        ss.ignore(); // Bỏ qua dấu phẩy
+        ss >> quantity;
+
+        // Tạo sản phẩm và thêm vào giỏ hàng
+        Product product(id, name, "", price, 0, "", Vector<string>(), ""); // Gọi constructor Product phù hợp
+        cart.addItem(product, quantity); // Giả sử bạn có phương thức addItem để thêm sản phẩm vào giỏ hàng
+    }
+
+    file.close();
+    return cart;
+}

@@ -374,6 +374,14 @@ debug/moc_GiaoDienKhachHang.cpp: View/GiaoDienKhachHang.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
 		C:/QT/6.7.3/mingw_64/include/QtGui/qpicture.h \
 		C:/QT/6.7.3/mingw_64/include/QtCore/QString \
+		Model/Cart.h \
+		Model/User.h \
+		Model/Product.h \
+		Datastructures/Vector.h \
+		Datastructures/Pair.h \
+		Model/Customer.h \
+		Model/Manager.h \
+		Model/Order.h \
 		debug/moc_predefs.h \
 		C:/QT/6.7.3/mingw_64/bin/moc.exe
 	C:\QT\6.7.3\mingw_64\bin\moc.exe $(DEFINES) --include D:/PBL/debug/moc_predefs.h -IC:/QT/6.7.3/mingw_64/mkspecs/win32-g++ -ID:/PBL -IC:/QT/6.7.3/mingw_64/include -IC:/QT/6.7.3/mingw_64/include/QtWidgets -IC:/QT/6.7.3/mingw_64/include/QtGui -IC:/QT/6.7.3/mingw_64/include/QtCore -IC:/mingw64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/mingw64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/mingw64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/mingw64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/mingw64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/mingw64/x86_64-w64-mingw32/include View\GiaoDienKhachHang.h -o debug\moc_GiaoDienKhachHang.cpp
@@ -627,7 +635,15 @@ debug/MainApplication.o: MainApplication.cpp C:/QT/6.7.3/mingw_64/include/QtWidg
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QLabel \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
 		C:/QT/6.7.3/mingw_64/include/QtGui/qpicture.h \
-		C:/QT/6.7.3/mingw_64/include/QtCore/QString
+		C:/QT/6.7.3/mingw_64/include/QtCore/QString \
+		Model/Cart.h \
+		Model/User.h \
+		Model/Product.h \
+		Datastructures/Vector.h \
+		Datastructures/Pair.h \
+		Model/Customer.h \
+		Model/Manager.h \
+		Model/Order.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\MainApplication.o MainApplication.cpp
 
 debug/DataController.o: Controller/DataController.cpp Controller/DataController.h \
@@ -635,9 +651,7 @@ debug/DataController.o: Controller/DataController.cpp Controller/DataController.
 		Model/User.h \
 		Datastructures/Vector.h \
 		Datastructures/Pair.h \
-		Model/Cart.h \
-		Model/Manager.h \
-		Model/Order.h
+		Model/Cart.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\DataController.o Controller\DataController.cpp
 
 debug/Product.o: Model/Product.cpp Model/Product.h \
@@ -648,11 +662,9 @@ debug/Product.o: Model/Product.cpp Model/Product.h \
 
 debug/Cart.o: Model/Cart.cpp Model/Cart.h \
 		Model/User.h \
-		Model/Manager.h \
 		Model/Product.h \
 		Datastructures/Vector.h \
-		Datastructures/Pair.h \
-		Model/Order.h
+		Datastructures/Pair.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\Cart.o Model\Cart.cpp
 
 debug/User.o: Model/User.cpp Model/User.h
@@ -888,14 +900,15 @@ debug/GiaoDienKhachHang.o: View/GiaoDienKhachHang.cpp View/GiaoDienKhachHang.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
 		C:/QT/6.7.3/mingw_64/include/QtGui/qpicture.h \
 		C:/QT/6.7.3/mingw_64/include/QtCore/QString \
-		Model/Product.h \
+		Model/Cart.h \
 		Model/User.h \
+		Model/Product.h \
 		Datastructures/Vector.h \
 		Datastructures/Pair.h \
-		Controller/DataController.h \
-		Model/Cart.h \
+		Model/Customer.h \
 		Model/Manager.h \
 		Model/Order.h \
+		Controller/DataController.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
 		C:/QT/6.7.3/mingw_64/include/QtWidgets/qlayout.h \

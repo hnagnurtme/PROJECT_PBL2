@@ -1,9 +1,16 @@
 #include "Model/Cart.h"
 #include "Model/Product.h"
+#include "Datastructures/Vector.h"
+#include "Datastructures/Pair.h"
+#include <string>
 #include <iostream>
+
 using namespace std;
 
-
+Cart::Cart(string id) : customerID(id) {}
+void Cart:: setCartID(string id){
+       customerID = id; 
+}
 void Cart::addItem(const Product& product, int quantity) {
     if (quantity <= 0) {
         cerr << "Quantity must be greater than 0." << endl;
@@ -42,8 +49,8 @@ void Cart::displayCartItems() const {
     cout << "Cart items:" << endl;
     for (int i = 0; i < items.getSize(); ++i) {
         cout << "Product ID: " << items[i].getFirst().getProductId()
-            << ", Name: " << items[i].getFirst().getName() 
-            << ", Quantity: " << items[i].getSecond() << endl;
+             << ", Name: " << items[i].getFirst().getName() 
+             << ", Quantity: " << items[i].getSecond() << endl;
     }
 }
 
@@ -53,4 +60,26 @@ Vector<Pair<Product, int>> Cart::getItems() const {
 
 string Cart::getCustomerID() const {
     return customerID;
+}
+
+bool Cart::contains(const std::string& productId) const {
+    for (long i = 0; i < items.getSize(); ++i) {
+        if (items[i].getFirst().getProductId() == productId) {
+            return true; 
+        }
+    }
+    return false; 
+}
+void Cart::reduceItem(const string& productId, int quantity) {
+    for (long i = 0; i < items.getSize(); ++i) {
+        if (items[i].getFirst().getProductId() == productId) {
+            int currentQuantity = items[i].getSecond();
+            if (currentQuantity > quantity) {
+                items[i].setSecond(currentQuantity - quantity); 
+            } else {
+                items.remove(i); 
+            }
+            break; 
+        }
+    }
 }

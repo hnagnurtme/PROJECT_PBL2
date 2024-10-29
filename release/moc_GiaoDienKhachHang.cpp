@@ -37,11 +37,8 @@ namespace {
 struct qt_meta_stringdata_CLASSCustomerInterfaceENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSCustomerInterfaceENDCLASS = QtMocHelpers::stringData(
     "CustomerInterface",
-    "productAdded",
-    "",
-    "productName",
-    "productDeleted",
     "showOverview",
+    "",
     "showProducts",
     "filterProducts",
     "showCart",
@@ -62,31 +59,23 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSCustomerInterfaceENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
-
- // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   80,    2, 0x06,    1 /* Public */,
-       4,    1,   83,    2, 0x06,    3 /* Public */,
+       0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    0,   86,    2, 0x08,    5 /* Private */,
-       6,    0,   87,    2, 0x08,    6 /* Private */,
-       7,    0,   88,    2, 0x08,    7 /* Private */,
-       8,    0,   89,    2, 0x08,    8 /* Private */,
-       9,    0,   90,    2, 0x08,    9 /* Private */,
-      10,    0,   91,    2, 0x08,   10 /* Private */,
-      11,    0,   92,    2, 0x08,   11 /* Private */,
-      12,    0,   93,    2, 0x08,   12 /* Private */,
-      13,    0,   94,    2, 0x08,   13 /* Private */,
-
- // signals: parameters
-    QMetaType::Void, QMetaType::QString,    3,
-    QMetaType::Void, QMetaType::QString,    3,
+       1,    0,   68,    2, 0x08,    1 /* Private */,
+       3,    0,   69,    2, 0x08,    2 /* Private */,
+       4,    0,   70,    2, 0x08,    3 /* Private */,
+       5,    0,   71,    2, 0x08,    4 /* Private */,
+       6,    0,   72,    2, 0x08,    5 /* Private */,
+       7,    0,   73,    2, 0x08,    6 /* Private */,
+       8,    0,   74,    2, 0x08,    7 /* Private */,
+       9,    0,   75,    2, 0x08,    8 /* Private */,
+      10,    0,   76,    2, 0x08,    9 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -111,12 +100,6 @@ Q_CONSTINIT const QMetaObject CustomerInterface::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSCustomerInterfaceENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<CustomerInterface, std::true_type>,
-        // method 'productAdded'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
-        // method 'productDeleted'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'showOverview'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'showProducts'
@@ -145,36 +128,19 @@ void CustomerInterface::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         auto *_t = static_cast<CustomerInterface *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->productAdded((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 1: _t->productDeleted((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 2: _t->showOverview(); break;
-        case 3: _t->showProducts(); break;
-        case 4: _t->filterProducts(); break;
-        case 5: _t->showCart(); break;
-        case 6: _t->showOrders(); break;
-        case 7: _t->showAccount(); break;
-        case 8: _t->showInvoice(); break;
-        case 9: _t->payment(); break;
-        case 10: _t->checkout(); break;
+        case 0: _t->showOverview(); break;
+        case 1: _t->showProducts(); break;
+        case 2: _t->filterProducts(); break;
+        case 3: _t->showCart(); break;
+        case 4: _t->showOrders(); break;
+        case 5: _t->showAccount(); break;
+        case 6: _t->showInvoice(); break;
+        case 7: _t->payment(); break;
+        case 8: _t->checkout(); break;
         default: ;
         }
-    } else if (_c == QMetaObject::IndexOfMethod) {
-        int *result = reinterpret_cast<int *>(_a[0]);
-        {
-            using _t = void (CustomerInterface::*)(const QString & );
-            if (_t _q_method = &CustomerInterface::productAdded; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 0;
-                return;
-            }
-        }
-        {
-            using _t = void (CustomerInterface::*)(const QString & );
-            if (_t _q_method = &CustomerInterface::productDeleted; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 1;
-                return;
-            }
-        }
     }
+    (void)_a;
 }
 
 const QMetaObject *CustomerInterface::metaObject() const
@@ -196,28 +162,14 @@ int CustomerInterface::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 11;
+        _id -= 9;
     }
     return _id;
-}
-
-// SIGNAL 0
-void CustomerInterface::productAdded(const QString & _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
-    QMetaObject::activate(this, &staticMetaObject, 0, _a);
-}
-
-// SIGNAL 1
-void CustomerInterface::productDeleted(const QString & _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
-    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 QT_WARNING_POP

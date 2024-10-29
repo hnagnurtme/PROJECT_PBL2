@@ -12,7 +12,10 @@
 #include <QTextEdit>
 #include <QLabel>
 #include <QString>
-
+#include "Model/Cart.h"
+#include "Model/Customer.h"
+#include <string>
+using namespace std;
 class CustomerInterface : public QWidget {
     Q_OBJECT
 
@@ -29,10 +32,9 @@ private slots:
     void payment();
     void checkout();
 signals:
-    void productAdded(const QString &productName);
-    void productDeleted(const QString &productName);
-
 private:
+    string customerID ;
+    Cart cart;
     QVector<QStringList> gioHang;
     QPushButton *showOverviewButton;
     QPushButton *showProductsButton;

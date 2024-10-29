@@ -1,5 +1,7 @@
 #include "Model/Product.h"
 #include <iostream>
+Product::Product() 
+    : productId(""), name(""), category(""), price(0.0), stock(0), description(""), colors(), brand("") {}
 
 Product::Product(string id, const string& name, const string& category, double price, int stock,
                 const string& description, const Vector<string>& colors, const string& brand)
@@ -37,7 +39,9 @@ Vector<string> Product::getColors() const {
 string Product::getBrand() const {
     return brand;
 }
-
+void Product::setProductId(const string& newID){
+    productId = newID;
+}
 void Product::setName(const string& newName) {
     name = newName;
 }

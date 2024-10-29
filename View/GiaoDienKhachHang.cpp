@@ -17,6 +17,8 @@
 #include <QDate>
 #include <QDir>
 CustomerInterface::CustomerInterface(QWidget *parent) : QWidget(parent) {
+    customerID ="USER001";
+    cart.setCartID(customerID);
     QFile file("Resource/style.qss");
     if (file.open(QFile::ReadOnly | QFile::Text)) {
         QTextStream stream(&file);
@@ -147,7 +149,7 @@ void CustomerInterface::addProductsData() {
         productTable->setItem(row, 0, new QTableWidgetItem(QString::number(row + 1))); 
         productTable->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(products[i].getProductId()))); 
         productTable->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(products[i].getName()))); 
-        productTable->setItem(row, 4, new QTableWidgetItem(QString::number(products[i].getPrice()) + " $"));
+        productTable->setItem(row, 4, new QTableWidgetItem(QString::number(products[i].getPrice()))); 
         productTable->setItem(row, 5, new QTableWidgetItem(QString::number(products[i].getStock()))); 
 
         
@@ -204,30 +206,15 @@ void CustomerInterface::showProducts() {
 
     stackWidget->setCurrentIndex(0);
 }
-
 void CustomerInterface::addProducts(int row, bool fromCart) {
-    QString tenSanPham = fromCart ? gioHang[row][0] : productTable->item(row, 3)->text();
-    QString giaSanPham = fromCart ? gioHang[row][2] : productTable->item(row, 4)->text();
-    QString productId = fromCart ? gioHang[row][1] : productTable->item(row, 2)->text();
+    QString tenSanPham = productTable->item(row, 3)->text();
+    QString giaSanPham = productTable->item(row, 4)->text();
+    QString productId = productTable->item(row, 2)->text();
 
     if (!fromCart && !productTable->item(row, 3)) return;
 
-    bool daCoTrongGioHang = false;
-
-    for (auto &sanPham : gioHang) {
-        if (sanPham[1] == productId) {
-            int soLuong = sanPham[3].toInt();
-            soLuong++;
-            sanPham[3] = QString::number(soLuong);
-            daCoTrongGioHang = true;
-            break;
-        }
-    }
-
-    if (!daCoTrongGioHang) {
-        gioHang.append({tenSanPham, productId, giaSanPham, "1"});
-    }
-
+    Product product(productId.toStdString(), tenSanPham.toStdString(), "", giaSanPham.toDouble(), 0, "", Vector<string>(), "");
+    cart.addItem(product, 1); 
     if (fromCart) {
         showCart();
     }
@@ -236,36 +223,29 @@ void CustomerInterface::addProducts(int row, bool fromCart) {
 
 
 void CustomerInterface::deleteProducts(int row, bool fromCart) {
-    QString productId = fromCart ? gioHang[row][1] : productTable->item(row, 2)->text();
-    for (int i = 0; i < gioHang.size(); ++i) {
-        if (gioHang[i][1] == productId) {
-            int soLuong = gioHang[i][3].toInt();
-            if (soLuong > 1) {
-                soLuong--;
-                gioHang[i][3] = QString::number(soLuong);
-            } else {
-                gioHang.removeAt(i);
-            }
-            break;
-        }
+    QString productId = fromCart ? cart.getItems()[row].getFirst().getProductId().c_str() : productTable->item(row, 2)->text();
+    if (cart.contains(productId.toStdString())) {
+        cart.reduceItem(productId.toStdString(), 1); 
     }
-    
     if (fromCart) {
         showCart();
     }
 }
 
+
+
 void CustomerInterface::showCart() {
     cartTable->clear();
     cartTable->setColumnCount(6);
     cartTable->setHorizontalHeaderLabels({"No.", "Product Name", "Product ID", "Price", "Quantity", "Action"});
-    cartTable->setRowCount(gioHang.size());
-    for (int i = 0; i < gioHang.size(); ++i) {
+    Vector<Pair<Product, int>> items = cart.getItems(); 
+    cartTable->setRowCount(items.getSize());
+    for (int i = 0; i < items.getSize(); ++i) {
         cartTable->setItem(i, 0, new QTableWidgetItem(QString::number(i + 1)));
-        cartTable->setItem(i, 1, new QTableWidgetItem(gioHang[i][0]));
-        cartTable->setItem(i, 2, new QTableWidgetItem(gioHang[i][1]));
-        cartTable->setItem(i, 3, new QTableWidgetItem(gioHang[i][2]));
-        cartTable->setItem(i, 4, new QTableWidgetItem(gioHang[i][3]));
+        cartTable->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(items[i].getFirst().getName())));
+        cartTable->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(items[i].getFirst().getProductId())));
+        cartTable->setItem(i, 3, new QTableWidgetItem(QString::number(items[i].getFirst().getPrice())));
+        cartTable->setItem(i, 4, new QTableWidgetItem(QString::number(items[i].getSecond())));
 
         QPushButton *btnAdd = new QPushButton("+");
         btnAdd->setObjectName("confirmButton");
@@ -286,24 +266,32 @@ void CustomerInterface::showCart() {
         cartTable->setCellWidget(i, 5, actionWidget);
     }
 
-    cartTable->setColumnWidth(0, 50); 
-    cartTable->setColumnWidth(1, 220);
-
     for (int row = 0; row < cartTable->rowCount(); ++row) {
         cartTable->setRowHeight(row, 50);
     }
-    int tongTien = 0;
-    for (const auto &sanPham : gioHang) {
-        int gia = sanPham[2].toInt();
-        int soLuong = sanPham[3].toInt();
-        tongTien += gia * soLuong;
+    cartTable->setColumnWidth(0, 50); 
+    cartTable->setColumnWidth(1, 220);
+    double tongTien = 0.0;
+    const Vector<Pair<Product, int>>& cartItems = cart.getItems(); 
+
+    for (long i = 0; i < cartItems.getSize(); ++i) {
+        const Product& product = cartItems[i].getFirst();
+        int soLuong = cartItems[i].getSecond(); 
+        double gia = product.getPrice();
+        tongTien += gia * soLuong; 
     }
 
     totalPrice->setText("Total Price : " + QString::number(tongTien) + " $");
     totalPrice->setStyleSheet("font-weight: bold; font-size: 16pt;");
     totalPrice->setFixedHeight(40);
     stackWidget->setCurrentIndex(1);
+
+     DataController cartData("D:/PBL/Data/ProductInformation.csv"); 
+    cartData.saveCartData(cart); 
 }
+
+
+
 
 
 

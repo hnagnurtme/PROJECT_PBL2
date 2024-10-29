@@ -17,6 +17,7 @@ private:
     string brand;
 
 public:
+    Product();
     Product(string id, const string& name, const string& category, double price, int stock,
             const string& description,const Vector<string>& colors, const string& brand);
     string getProductId() const;
@@ -27,6 +28,7 @@ public:
     string getDescription() const;
     Vector<string> getColors() const;
     string getBrand() const;
+    void setProductId(const string& newID);
     void setName(const string& newName);
     void setPrice(double newPrice);
     void setStock(int newStock);

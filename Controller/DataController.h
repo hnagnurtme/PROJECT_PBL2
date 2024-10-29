@@ -11,7 +11,8 @@ public:
     Product findProductById(const string& productId);
     DataController(const string& filename);
     Vector<Product> loadProductData(); 
-    // Cart loadCartData(const string& filename);
+    void saveCartData(const Cart& cart);       
+    Cart loadCartData(const string& customerID);
 private:
     string productFileName;
     Product parseProduct(const string& line);
